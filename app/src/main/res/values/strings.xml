@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Lista_compras</string>
+    <string name="action_settings">Settings</string>
+    <string name="produtos_a_adquirir">Produtos A Adquirir</string>
+    <string name="dinheiro_gasto">Dinheiro Gasto</string>
+    <string name="compras_efetuadas">Compras Efetuadas</string>
+</resources>
