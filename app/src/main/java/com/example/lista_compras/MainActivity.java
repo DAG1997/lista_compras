@@ -48,19 +48,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void botaoCarregado(View view) {
         Intent intent = new Intent(this, BotaoCarregado.class);
-        intent.putExtra(AppConsts.DESCRICAO, "Lista com os produtos a adquirir");
-        startActivity(intent);
-    }
 
-    public void botaoCarregado2(View view) {
-        Intent intent = new Intent(this, BotaoCarregado.class);
-        intent.putExtra(AppConsts.DESCRICAO_2, "Lista com as compras efetuadas");
-        startActivity(intent);
-    }
-
-    public void botaoCarregado3(View view) {
-        Intent intent = new Intent(this, BotaoCarregado.class);
-        intent.putExtra(AppConsts.DESCRICAO_3, "Dinheiro gasto em compras ao longo do tempo");
+        if(view.getId() == R.id.button ){
+            intent.putExtra(AppConsts.DESCRICAO, "Lista com os produtos a adquirir");
+        }else if (view.getId() == R.id.button2) {
+            intent.putExtra(AppConsts.DESCRICAO, "Lista com as compras efetuadas");
+        } else if (view.getId() == R.id.button3) {
+            intent.putExtra(AppConsts.DESCRICAO, "Dinheiro gasto em compras ao longo do tempo");
+        }
         startActivity(intent);
     }
 }

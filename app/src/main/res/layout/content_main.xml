@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="60dp"
-        android:onClick="botaoCarregado2"
+        android:onClick="botaoCarregado"
         android:text="@string/compras_efetuadas" />
 
     <Button
@@ -30,6 +30,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="60dp"
-        android:onClick="botaoCarregado3"
+        android:onClick="botaoCarregado"
         android:text="@string/dinheiro_gasto" />
 </LinearLayout>
