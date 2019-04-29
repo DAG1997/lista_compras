@@ -2,67 +2,65 @@ package com.example.lista_compras;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class BotaoCarregado extends AppCompatActivity {
+public class Compras_efetuadas extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_botao_carregado);
-        Button btn = (Button) findViewById(R.id.button4);
+        setContentView(R.layout.activity_compras_efetuadas);
+        Button btn = (Button) findViewById(R.id.button7);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openinserir_lista_produtos();
+                openinserir_compras_efetuadas();
 
             }
         });
 
-        Button btn2 = (Button) findViewById(R.id.button5);
+        Button btn2 = (Button) findViewById(R.id.button8);
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openalterar_lista_produtos();
+                openalterar_compras_efetuadas();
 
             }
         });
 
-        Button btn3 = (Button) findViewById(R.id.button6);
+        Button btn3 = (Button) findViewById(R.id.button9);
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openeliminar_lista_produtos();
+                openeliminar_compras_efetuadas();
 
             }
         });
     }
 
-    public void openinserir_lista_produtos(){
-        Intent intent = new Intent(this, Inserir_lista_produtos.class);
+    public void openinserir_compras_efetuadas(){
+        Intent intent = new Intent(this, inserir_compras_efetuadas.class);
         startActivity(intent);
     }
 
-    public void openalterar_lista_produtos(){
-        Intent intent = new Intent(this, alterar_lista_produtos.class);
+    public void openalterar_compras_efetuadas(){
+        Intent intent = new Intent(this, alterar_compras_efetuadas.class);
         startActivity(intent);
     }
 
-    public void openeliminar_lista_produtos(){
-        Intent intent = new Intent(this, eliminar_lista_produtos.class);
+    public void openeliminar_compras_efetuadas(){
+        Intent intent = new Intent(this, eliminar_compras_efetuadas.class);
         startActivity(intent);
     }
 
 
 
 
-    }
+}
 
 
 

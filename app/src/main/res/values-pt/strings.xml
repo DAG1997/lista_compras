@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lista de compras</string>
+    <string name="alterar" >Modificar</string>
+    <string name="arroz" >Arroz</string>
+    <string name="bananas" >Bananas</string>
+    <string name="bolachas" >Bolachas</string>
+    <string name="cancelar" >Cancelar</string>
+    <string name="cereais">Cereais</string>
+    <string name="compras_efetuadas">Compras Efetuadas</string>
+    <string name="dinheiro_gasto">Dinheiro Gasto</string>
+    <string name="dinheiro_gasto_ate_ao_momento">Dinheiro gasto ate ao momento</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="frango">Frango</string>
+    <string name="guardar">Guardar</string>
+    <string name="inserir">Inserir</string>
+    <string name="inserir_data">Inserir data</string>
+    <string name="inserir_montante_gasto">Inserir montante gasto</string>
+    <string name="introduzir_dados_dos_produtos_a_adquirir">Introduzir dados dos produtos a adquirir</string>
+    <string name="introduzir_data_a_alterar">Introduzir data a alterar</string>
+    <string name="introduzir_montante_a_alterar">Introduzir montante a alterar</string>
+    <string name="introduzir_nome_do_produto">Introduzir nome do produto</string>
+    <string name="introduzir_nome_do_produto_a_alterar">Introduzir nome do produto a alterar</string>
+    <string name="introduzir_quantidade">Introduzir quantidade</string>
+    <string name="introduzir_quantidade_a_alterar">Introduzir quantidade a alterar</string>
+    <string name="lista_das_compras_ja_efetuadas">Lista das compras ja efetuadas</string>
+    <string name="lista_de_produtos_a_adquirir">Lista de produtos a adquirir</string>
+    <string name="produtos_a_adquirir">Produtos a adquirir</string>
+    <string name="salsichas">Salsichas</string>
+    <string name="lista_de_compras">Lista de Compras</string>
+</resources>

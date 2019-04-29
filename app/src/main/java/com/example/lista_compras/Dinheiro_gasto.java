@@ -8,62 +8,60 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-public class BotaoCarregado extends AppCompatActivity {
+public class Dinheiro_gasto extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_botao_carregado);
-        Button btn = (Button) findViewById(R.id.button4);
+        setContentView(R.layout.activity_dinheiro_gasto);
+
+
+        Button btn = (Button) findViewById(R.id.button10);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openinserir_lista_produtos();
+                openinserir_dinheiro_gasto();
 
             }
         });
 
-        Button btn2 = (Button) findViewById(R.id.button5);
+        Button btn2 = (Button) findViewById(R.id.button11);
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openalterar_lista_produtos();
+                openalterar_dinheiro_gasto();
 
             }
         });
 
-        Button btn3 = (Button) findViewById(R.id.button6);
+        Button btn3 = (Button) findViewById(R.id.button12);
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openeliminar_lista_produtos();
+                openeliminar_dinheiro_gasto();
 
             }
         });
     }
 
-    public void openinserir_lista_produtos(){
-        Intent intent = new Intent(this, Inserir_lista_produtos.class);
+    public void openinserir_dinheiro_gasto(){
+        Intent intent = new Intent(this, inserir_dinheiro_gasto.class);
         startActivity(intent);
     }
 
-    public void openalterar_lista_produtos(){
-        Intent intent = new Intent(this, alterar_lista_produtos.class);
+    public void openalterar_dinheiro_gasto(){
+        Intent intent = new Intent(this, alterar_dinheiro_gasto.class);
         startActivity(intent);
     }
 
-    public void openeliminar_lista_produtos(){
-        Intent intent = new Intent(this, eliminar_lista_produtos.class);
+    public void openeliminar_dinheiro_gasto(){
+        Intent intent = new Intent(this, eliminar_dinheiro_gasto.class);
         startActivity(intent);
     }
 
 
 
 
-    }
-
-
-
+}
 

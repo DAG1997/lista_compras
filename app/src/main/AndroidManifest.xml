@@ -9,7 +9,54 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BotaoCarregado"></activity>
+        <activity
+            android:name=".eliminar_dinheiro_gasto"
+            android:label="@string/title_activity_eliminar_dinheiro_gasto"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".eliminar_compras_efetuadas"
+            android:label="@string/title_activity_eliminar_compras_efetuadas"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".eliminar_lista_produtos"
+            android:label="@string/title_activity_eliminar_lista_produtos"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".alterar_dinheiro_gasto"
+            android:label="@string/title_activity_alterar_dinheiro_gasto"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".alterar_compras_efetuadas"
+            android:label="@string/title_activity_alterar_compras_efetuadas"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".alterar_lista_produtos"
+            android:label="@string/title_activity_alterar_lista_produtos"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".inserir_dinheiro_gasto"
+            android:label="@string/title_activity_inserir_dinheiro_gasto"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".inserir_compras_efetuadas"
+            android:label="@string/title_activity_inserir_compras_efetuadas"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Inserir_lista_produtos"
+            android:label="@string/title_activity_inserir_lista_produtos"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Dinheiro_gasto"
+            android:label="@string/title_activity_dinheiro_gasto"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BotaoCarregado"
+            android:label="@string/title_activity_botao_carregado"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Compras_efetuadas"
+            android:label="@string/title_activity_produtos_adquirir"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

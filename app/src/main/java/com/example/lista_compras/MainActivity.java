@@ -9,6 +9,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,21 +18,47 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        Button btn = (Button) findViewById(R.id.button);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Lista com os produtos a adquirir", Toast.LENGTH_SHORT).show();
+                openBotaoCarregado();
+            }
+                
+
+        });
+
+        Button btn2 = (Button) findViewById(R.id.button2);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Lista com as compras efetuadas", Toast.LENGTH_SHORT).show();
+                openCompras_efetuadas();
+            }
+        });
+
+        Button btn3 = (Button) findViewById(R.id.button3);
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Dinheiro gasto em compras ao longo do tempo", Toast.LENGTH_SHORT).show();
+                openDinheiro_gasto();
+            }
+        });
 
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+        @Override
+        public boolean onCreateOptionsMenu (Menu menu){
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+        @Override
+        public boolean onOptionsItemSelected (MenuItem item){
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -45,17 +73,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void openBotaoCarregado(){
+        Intent intent = new Intent(this,BotaoCarregado.class);
+        startActivity(intent);
 
-    public void botaoCarregado(View view) {
-        Intent intent = new Intent(this, BotaoCarregado.class);
 
-        if(view.getId() == R.id.button ){
-            intent.putExtra(AppConsts.DESCRICAO, "Lista com os produtos a adquirir");
-        }else if (view.getId() == R.id.button2) {
-            intent.putExtra(AppConsts.DESCRICAO, "Lista com as compras efetuadas");
-        } else if (view.getId() == R.id.button3) {
-            intent.putExtra(AppConsts.DESCRICAO, "Dinheiro gasto em compras ao longo do tempo");
-        }
+    }
+
+    public void openCompras_efetuadas(){
+        Intent intent = new Intent(this,Compras_efetuadas.class);
         startActivity(intent);
     }
-}
+
+    public void openDinheiro_gasto(){
+        Intent intent = new Intent(this,Dinheiro_gasto.class);
+        startActivity(intent);
+    }
+
+    }
+
