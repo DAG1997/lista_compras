@@ -15,31 +15,47 @@ import android.widget.Toast;
 public class Inserir_lista_produtos extends AppCompatActivity {
 
 
+     private TextInputLayout inserircompras;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inserir_lista_produtos);
 
 
-        Button btn = (Button) findViewById(R.id.button13);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(Inserir_lista_produtos.this, "Dados Inseridos com Sucesso!!!", Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        });
-
-        Button btn2 = (Button) findViewById(R.id.button14);
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        inserircompras = findViewById(R.id.textInputLayout3);
     }
-}
 
+    private boolean Validacao() {
+        String compras = inserircompras.getEditText().getText().toString().trim();
+        /*String compras2 = inserircompras.getEditText().getText().toString().trim();*/
+
+        if (compras.isEmpty()) {
+            inserircompras.setError("Por favor introduza um nome!");
+
+            return false;
+        } else {
+            inserircompras.setError(null);
+        }
+        return true;
+    }
+
+
+
+
+    public void Guardar (View v) {
+        if(!Validacao())
+            return;
+        Toast.makeText(Inserir_lista_produtos.this, "Dados inseridos com sucesso!!!", Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
+    public void Cancelar (View v) {
+        finish();
+    }
+
+
+}
 
 
 
