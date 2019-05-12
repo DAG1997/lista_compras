@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class inserir_compras_efetuadas extends AppCompatActivity {
     private TextInputLayout inserircompras;
-    /*private TextInputLayout inserircompras2;*/
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,21 +21,18 @@ public class inserir_compras_efetuadas extends AppCompatActivity {
 
 
         inserircompras = findViewById(R.id.textInputLayout5);
-        /*inserircompras = findViewById(R.id.textInputLayout6);*/
     }
 
     private boolean Validacao() {
         String compras = inserircompras.getEditText().getText().toString().trim();
-        /*String compras2 = inserircompras2.getEditText().getText().toString().trim();*/
+        /*String compras2 = inserircompras.getEditText().getText().toString().trim();*/
 
-        if (compras.isEmpty() /*|| compras2.isEmpty()*/) {
+        if (compras.isEmpty()) {
             inserircompras.setError("Por favor introduza um nome!");
-            /*inserircompras2.setError("Por favor introduza um numero de 0 a 100!");*/
 
             return false;
         } else {
             inserircompras.setError(null);
-            /*inserircompras2.setError(null);*/
         }
         return true;
     }
