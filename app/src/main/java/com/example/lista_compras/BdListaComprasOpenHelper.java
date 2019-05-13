@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 
 public class BdListaComprasOpenHelper extends SQLiteOpenHelper {
 
-    private static final String NOME_BASE_DADOS = "NOME_BASE_DADOS";
+    public static final String NOME_BASE_DADOS = "NOME_BASE_DADOS";
     private  static  final int VERSAO_BASE_DADOS = 1;
 
     public BdListaComprasOpenHelper(@Nullable Context context) {
