@@ -8,9 +8,9 @@ import android.provider.BaseColumns;
 public class BdTableListaProdutos implements BaseColumns {
     public static final String NOME_TABELA = "NOME_TABELA";
     public static final String NOME_PRODUTO = "NOME_PRODUTO";
-    public static final String QUANTIDADE = "QUANTIDADE";
+    //public static final String QUANTIDADE = "QUANTIDADE";
 
-    public static final String[] TODAS_COLUNAS = new String[]{_ID, QUANTIDADE, NOME_PRODUTO};
+    public static final String[] TODAS_COLUNAS = new String[]{_ID, /*QUANTIDADE,*/ NOME_PRODUTO};
     public SQLiteDatabase db;
     public BdTableListaProdutos(SQLiteDatabase db) {
         this.db = db;
@@ -20,8 +20,8 @@ public class BdTableListaProdutos implements BaseColumns {
         db.execSQL(
                 "CREATE TABLE " + NOME_TABELA + "(" +
         _ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        NOME_PRODUTO + " TEXT NOT NULL," +
-                        QUANTIDADE + " NUMBER NOT NULL" + ")"
+                        NOME_PRODUTO + " TEXT NOT NULL" +
+                        /*QUANTIDADE + " NUMBER NOT NULL" +*/ ")"
 
 
 

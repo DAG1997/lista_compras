@@ -6,24 +6,20 @@ import android.database.Cursor;
 public class ComprasEfetuadas {
 
     public long id;
-    public int nome_produto;
-    public double quantidade;
+    /*public String nome_produto;*/
+    public int quantidade;
 
-    public int getNome_produto() {
+    public long lista_produtos;
+
+
+
+   /* public String getNome_produto() {
         return nome_produto;
     }
 
-    public void setNome_produto(int nome_produto) {
+    public void setNome_produto(String nome_produto) {
         this.nome_produto = nome_produto;
-    }
-
-    public double getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(double quantidade) {
-        this.quantidade = quantidade;
-    }
+    }*/
 
     public long getId() {
         return id;
@@ -33,12 +29,18 @@ public class ComprasEfetuadas {
         this.id = id;
     }
 
+    public int getQuantidade() {
+        return quantidade;
+    }
 
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
 
     public ContentValues getContentValues() {
         ContentValues valores = new ContentValues();
 
-        valores.put(BdTableComprasEfetuadas.NOME_PRODUTO, nome_produto);
+        /*valores.put(BdTableComprasEfetuadas.NOME_PRODUTO, nome_produto);*/
         valores.put(BdTableComprasEfetuadas.QUANTIDADE, quantidade);
 
 
@@ -50,11 +52,11 @@ public class ComprasEfetuadas {
                 cursor.getColumnIndex(BdTableComprasEfetuadas._ID)
         );
 
-        int nome_produto = cursor.getInt(
+        /*String nome_produto = cursor.getString(
                 cursor.getColumnIndex(BdTableComprasEfetuadas.NOME_PRODUTO)
-        );
+        );*/
 
-        double quantidade = cursor.getDouble(
+        int quantidade = cursor.getInt(
                 cursor.getColumnIndex(BdTableComprasEfetuadas.QUANTIDADE)
         );
 
@@ -62,12 +64,21 @@ public class ComprasEfetuadas {
         ComprasEfetuadas ComprasEfetuadas = new ComprasEfetuadas();
 
         ComprasEfetuadas.setId(id);
-        ComprasEfetuadas.setNome_produto(nome_produto);
+        /*ComprasEfetuadas.setNome_produto(nome_produto);*/
         ComprasEfetuadas.setQuantidade(quantidade);
 
 
         return ComprasEfetuadas;
 
     }
+
+    public long getLista_produtos() {
+        return lista_produtos;
+    }
+
+    public void setLista_produtos(long lista_produtos) {
+        this.lista_produtos = lista_produtos;
+    }
 }
+
 

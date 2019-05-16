@@ -7,10 +7,11 @@ import android.provider.BaseColumns;
 
 public class BdTableComprasEfetuadas implements BaseColumns {
     public static final String NOME_TABELA = "NOME_TABELA";
-    public static final String NOME_PRODUTO = "NOME PRODUTO";
+    /*public static final String NOME_PRODUTO = "NOME PRODUTO";*/
     public static final String QUANTIDADE = "QUANTIDADE";
 
-    public static final String[] TODAS_COLUNAS = new String[]{_ID, QUANTIDADE, NOME_PRODUTO};
+    public static final String[] TODAS_COLUNAS = new String[]{_ID, QUANTIDADE, /*NOME_PRODUTO*/};
+    private static final String CAMPO_LISTA_PRODUTOS = "CAMPO_LISTA_PRODUTOS";
 
     public SQLiteDatabase db;
 
@@ -23,11 +24,14 @@ public class BdTableComprasEfetuadas implements BaseColumns {
         db.execSQL(
                 "CREATE TABLE " + NOME_TABELA + "(" +
                         _ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        NOME_PRODUTO+ "TEXT NOT NULL," +
-                        QUANTIDADE + " NUMBER NOT NULL" +
-
-
+                        /*NOME_PRODUTO+ "TEXT NOT NULL," +*/
+                        QUANTIDADE + " NUMBER NOT NULL," +
+                        CAMPO_LISTA_PRODUTOS + " INTEGER NOT NULL," +
+                        "FOREIGN KEY (" + CAMPO_LISTA_PRODUTOS  + ") REFERENCES " + BdTableListaProdutos.NOME_TABELA + "(" + BdTableListaProdutos._ID + ")" +
                         ")"
+
+
+
         );
     }
 

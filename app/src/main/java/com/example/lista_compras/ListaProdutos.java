@@ -6,24 +6,8 @@ import android.database.Cursor;
 public class ListaProdutos {
 
     private long id;
-    private int nome_produto;
-    private double quantidade;
-
-    public int getNome_produto() {
-        return nome_produto;
-    }
-
-    public void setNome_produto(int nome_produto) {
-        this.nome_produto = nome_produto;
-    }
-
-    public double getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(double quantidade) {
-        this.quantidade = quantidade;
-    }
+    private String nome_produto;
+    /*private int quantidade;*/
 
     public long getId() {
         return id;
@@ -33,13 +17,27 @@ public class ListaProdutos {
         this.id = id;
     }
 
+    public String getNome_produto() {
+        return nome_produto;
+    }
 
+    public void setNome_produto(String nome_produto) {
+        this.nome_produto = nome_produto;
+    }
+
+   /*public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }*/
 
     public ContentValues getContentValues() {
         ContentValues valores = new ContentValues();
 
         valores.put(BdTableListaProdutos.NOME_PRODUTO, nome_produto);
-        valores.put(BdTableListaProdutos.QUANTIDADE, quantidade);
+        /*valores.put(BdTableListaProdutos.QUANTIDADE, quantidade);*/
 
 
         return valores;
@@ -50,20 +48,20 @@ public class ListaProdutos {
                 cursor.getColumnIndex(BdTableListaProdutos._ID)
         );
 
-        int nome_produto = cursor.getInt(
+        String nome_produto = cursor.getString(
                 cursor.getColumnIndex(BdTableListaProdutos.NOME_PRODUTO)
         );
 
-        double quantidade = cursor.getDouble(
+        /*int quantidade = cursor.getInt(
                 cursor.getColumnIndex(BdTableListaProdutos.QUANTIDADE)
-        );
+        );*/
 
 
         ListaProdutos listaProdutos = new ListaProdutos();
 
         listaProdutos.setId(id);
         listaProdutos.setNome_produto(nome_produto);
-        listaProdutos.setQuantidade(quantidade);
+        /*listaProdutos.setQuantidade(quantidade);*/
 
 
         return listaProdutos;
