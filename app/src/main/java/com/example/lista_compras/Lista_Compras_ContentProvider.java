@@ -355,7 +355,7 @@ public class Lista_Compras_ContentProvider extends ContentProvider {
 
         switch (getUriMatcher().match(uri)){
             case URI_COMPRASEFETUADAS_ESPECIFICAS:
-                return new BdTableComprasEfetuadas(bd).update( _ID = "=?", new String[]{id});
+                return new BdTableComprasEfetuadas(bd).update( BdTableComprasEfetuadas._ID = "=?", new String[]{id});
 
             case URI_DINHEIROGASTO_ESPECIFICO:
                 return new BdTableDinheiroGasto(bd).update( BdTableDinheiroGasto._ID = "=?", new String[]{id});
