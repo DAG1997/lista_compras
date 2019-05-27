@@ -6,9 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 
 public class BdTableDinheiroGasto implements BaseColumns {
-    public static final String NOME_TABELA = "NOME_TABELA";
+    public static final String TABELA_DINHEIRO_GASTO = "DINHEIRO_GASTO";
     public static final String DATA = "Data";
-    public static final String MONTANTE_GASTO = "Montante gasto";
+    public static final String MONTANTE_GASTO = "Montante_gasto";
 
     public SQLiteDatabase db;
 
@@ -21,28 +21,28 @@ public class BdTableDinheiroGasto implements BaseColumns {
     public void cria() {
         db.execSQL(
 
-                "CREATE TABLE " + NOME_TABELA + "(" +
+                "CREATE TABLE " + TABELA_DINHEIRO_GASTO + "(" +
                         _ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        DATA + " DATE NOT NULL," +
-                        MONTANTE_GASTO + "NUMBER NOT NULL" +
+                        DATA + " STRING NOT NULL," +
+                        MONTANTE_GASTO + " NUMBER NOT NULL" +
                         ")"
         );
     }
 
     public Cursor query(String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy) {
-        return db.query(NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy);
+        return db.query(TABELA_DINHEIRO_GASTO, columns, selection, selectionArgs, groupBy, having, orderBy);
     }
 
     public long insert(ContentValues values) {
-        return db.insert(NOME_TABELA, null, values);
+        return db.insert(TABELA_DINHEIRO_GASTO, null, values);
     }
 
     public int update(ContentValues values, String whereClause, String [] whereArgs) {
-        return db.update(NOME_TABELA, values, whereClause, whereArgs);
+        return db.update(TABELA_DINHEIRO_GASTO, values, whereClause, whereArgs);
     }
 
     public int delete(String whereClause, String[] whereArgs) {
-        return db.delete(NOME_TABELA, whereClause, whereArgs);
+        return db.delete(TABELA_DINHEIRO_GASTO, whereClause, whereArgs);
     }
 }
 

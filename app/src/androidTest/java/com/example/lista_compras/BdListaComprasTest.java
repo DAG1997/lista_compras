@@ -10,7 +10,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -63,7 +66,8 @@ public class BdListaComprasTest {
         cursorListaProdutos = getListaProdutos(tabelaListaProdutos);
         assertEquals(1, cursorListaProdutos.getCount());
 
-        ListaProdutos listaProdutos = (ListaProdutos) getListaProdutos(cursorListaProdutos, idPacotesArroz);
+
+        ListaProdutos listaProdutos = getListaProdutosComID(cursorListaProdutos ,idPacotesArroz);
         assertEquals(nome_produto, listaProdutos.getNome_produto());
         //assertEquals(nome_produto, listaProdutos.getQuantidade());
 
@@ -84,6 +88,11 @@ public class BdListaComprasTest {
         //quantidade = 7;
         listaProdutos.setNome_produto(nome_produto);
         //listaProdutos.setQuantidade(quantidade);
+
+        int registosAlterados = tabelaListaProdutos.update(listaProdutos.getContentValues(), BdTableListaProdutos._ID + "=?", new String[]{String.valueOf(idPacotesArroz)});
+
+        assertEquals(1, registosAlterados);
+
 
 
         tabelaListaProdutos.update(listaProdutos.getContentValues(), BdTableListaProdutos._ID + "=?", new String[]{String.valueOf(idPacotesArroz)});
@@ -118,41 +127,44 @@ public class BdListaComprasTest {
         // Teste create/read Compras Efetuadas (CRud)
 
         int quantidade = 3;
+        String lista_produtos = "Pacotes de arroz";
 
-        id = criaComprasEfetuadas(tabelaComprasEfetuadas, "Teste", quantidade, idPacotesArroz);
+        id = (long) criaComprasEfetuadas(tabelaComprasEfetuadas, "Teste", quantidade,lista_produtos);
         cursorComprasEfetuadas = getComprasEfetuadas(tabelaComprasEfetuadas);
         assertEquals(1, cursorComprasEfetuadas.getCount());
 
         ComprasEfetuadas comprasEfetuadas = getComprasEfetuadasComID(cursorComprasEfetuadas, id);
         assertEquals(quantidade, comprasEfetuadas.getQuantidade());
-        assertEquals(idPacotesArroz, comprasEfetuadas.getLista_produtos());
+        assertEquals(lista_produtos, comprasEfetuadas.getLista_produtos());
 
 
         quantidade = 14;
-        id = (long) criaComprasEfetuadas(tabelaComprasEfetuadas, "Teste", quantidade, idPacotesAtum);
+        lista_produtos = "Pacotes de Atum";
+        id = criaComprasEfetuadas(tabelaComprasEfetuadas, "Teste", quantidade, lista_produtos);
         cursorComprasEfetuadas = getComprasEfetuadas(tabelaComprasEfetuadas);
         assertEquals(2, cursorComprasEfetuadas.getCount());
 
         comprasEfetuadas = getComprasEfetuadasComID(cursorComprasEfetuadas, id);
         assertEquals(quantidade, comprasEfetuadas.getQuantidade());
-        assertEquals(idPacotesAtum, comprasEfetuadas.getLista_produtos());
+        assertEquals(lista_produtos, comprasEfetuadas.getLista_produtos());
 
 
         // Teste read/update compras efetuadas (cRUd)
         comprasEfetuadas = getComprasEfetuadasComID(cursorComprasEfetuadas, id);
 
         quantidade = 7;
+        lista_produtos ="Pacotes de arroz";
 
         comprasEfetuadas.setQuantidade(quantidade);
-        comprasEfetuadas.setLista_produtos(idPacotesArroz);
+        comprasEfetuadas.setLista_produtos(lista_produtos);
 
         tabelaComprasEfetuadas.update(comprasEfetuadas.getContentValues(), BdTableComprasEfetuadas._ID + "=?", new String[]{String.valueOf(id)});
 
         cursorComprasEfetuadas = getComprasEfetuadas(tabelaComprasEfetuadas);
 
-        comprasEfetuadas = getComprasEfetuadasComID(cursorComprasEfetuadas, id);
+        comprasEfetuadas = (ComprasEfetuadas) getComprasEfetuadasComID(cursorComprasEfetuadas, id);
         assertEquals(quantidade, comprasEfetuadas.getQuantidade());
-        assertEquals(idPacotesArroz, comprasEfetuadas.getLista_produtos());
+        assertEquals(lista_produtos, comprasEfetuadas.getLista_produtos());
 
         // Teste read/delete compras efetuadas (cRuD)
         tabelaComprasEfetuadas.delete(BdTableComprasEfetuadas._ID + "=?", new String[]{String.valueOf(id)});
@@ -169,22 +181,22 @@ public class BdListaComprasTest {
         String data = "26/04/2019";
         int montante_gasto = 36;
 
-        long idDinheiro = (long) criaDinheiroGasto(tabelaDinheiroGasto, data,montante_gasto);
+        long idDinheiro = criaDinheiroGasto(tabelaDinheiroGasto, data,montante_gasto);
         cursorDinheiroGasto = getDinheiroGasto(tabelaDinheiroGasto);
         assertEquals(1, cursorDinheiroGasto.getCount());
 
-        DinheiroGasto dinheiroGasto = (DinheiroGasto) getDinheiroGasto(cursorDinheiroGasto, idDinheiro);
+        DinheiroGasto dinheiroGasto =  getDinheiroGastoComID(cursorDinheiroGasto, idDinheiro);
         assertEquals(data, dinheiroGasto.getData());
         assertEquals(montante_gasto, dinheiroGasto.getMontante_gasto());
 
 
         data = "2/06/2019";
         montante_gasto = 139;
-        long idGasto = (long) criaListaProdutos(tabelaDinheiroGasto, data, montante_gasto);
+         idDinheiro = criaDinheiroGasto(tabelaDinheiroGasto, data, montante_gasto);
         cursorDinheiroGasto = getDinheiroGasto(tabelaDinheiroGasto);
         assertEquals(2, cursorDinheiroGasto.getCount());
 
-        dinheiroGasto = getDinheiroGastoComID(cursorDinheiroGasto, idGasto);
+        dinheiroGasto = getDinheiroGastoComID(cursorDinheiroGasto, idDinheiro);
         assertEquals(data, dinheiroGasto.getData());
         assertEquals(montante_gasto, dinheiroGasto.getMontante_gasto());
 
@@ -215,22 +227,11 @@ public class BdListaComprasTest {
         assertEquals(2, cursorDinheiroGasto.getCount());
 
         getDinheiroGastoComID(cursorDinheiroGasto, idDinheiro);
-        getDinheiroGastoComID(cursorDinheiroGasto, idGasto);
+
 
 
     }
 
-    private Object getDinheiroGasto(Cursor cursorDinheiroGasto, long idDinheiro) {
-        return null;
-    }
-
-    private Object criaListaProdutos(BdTableDinheiroGasto tabelaDinheiroGasto, String data, int montante_gasto) {
-        return null;
-    }
-
-    private Object getListaProdutos(Cursor cursorListaProdutos, long idPacotesArroz) {
-        return null;
-    }
 
 
     private long criaListaProdutos(BdTableListaProdutos tabelaListaProdutos, String nome_produto){// int quantidade) {
@@ -252,9 +253,8 @@ public class BdListaComprasTest {
         ListaProdutos lista_produtos = null;
 
         while (cursor.moveToNext()) {
-            lista_produtos = ListaProdutos.fromCursor(cursor);
-
-            if (lista_produtos.getId() == id) {
+            if (ListaProdutos.fromCursor(cursor).getId() == id) {
+                lista_produtos = ListaProdutos.fromCursor(cursor);
                 break;
             }
         }
@@ -264,7 +264,7 @@ public class BdListaComprasTest {
         return lista_produtos;
     }
 
-    private long criaComprasEfetuadas(BdTableComprasEfetuadas tabelaComprasEfetuadas /*String nome_produto*/, String teste, int quantidade, long idPacotesAtum) {
+    private long criaComprasEfetuadas(BdTableComprasEfetuadas tabelaComprasEfetuadas /*String nome_produto*/, String teste, int quantidade, String idPacotesAtum) {
 
         ComprasEfetuadas comprasEfetuadas = new ComprasEfetuadas();
         //comprasEfetuadas.setNome_produto(nome_produto);
