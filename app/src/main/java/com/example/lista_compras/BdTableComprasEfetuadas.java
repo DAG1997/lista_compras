@@ -25,9 +25,8 @@ public class BdTableComprasEfetuadas implements BaseColumns {
         db.execSQL(
                 "CREATE TABLE " + TABELA_COMPRAS_EFETUADAS + "(" +
                         _ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        /*NOME_PRODUTO+ "TEXT NOT NULL," +*/
                         QUANTIDADE + " NUMBER NOT NULL," +
-                        CAMPO_LISTA_PRODUTOS + " INTEGER NOT NULL," +
+                        CAMPO_LISTA_PRODUTOS + "INTEGER NOT NULL," +
                         "FOREIGN KEY (" + CAMPO_LISTA_PRODUTOS + ") REFERENCES " + BdTableListaProdutos.TABELA_LISTA_PRODUTOS + "(" + BdTableListaProdutos._ID + ")" +
                         ")"
 

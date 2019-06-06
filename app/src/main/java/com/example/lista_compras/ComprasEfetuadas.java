@@ -9,7 +9,7 @@ public class ComprasEfetuadas {
     /*public String nome_produto;*/
     public int quantidade;
 
-    public String lista_produtos;
+    public long lista_produtos;
 
 
 
@@ -37,11 +37,11 @@ public class ComprasEfetuadas {
         this.quantidade = quantidade;
     }
 
-    public String getLista_produtos() {
+    public long getLista_produtos() {
         return lista_produtos;
     }
 
-    public void setLista_produtos(String lista_produtos) {
+    public void setLista_produtos(long lista_produtos) {
         this.lista_produtos = lista_produtos;
     }
 
@@ -51,7 +51,7 @@ public class ComprasEfetuadas {
 
         /*valores.put(BdTableComprasEfetuadas.NOME_PRODUTO, nome_produto);*/
         valores.put(BdTableComprasEfetuadas.QUANTIDADE, quantidade);
-        valores.put(BdTableComprasEfetuadas.CAMPO_LISTA_PRODUTOS, lista_produtos);
+        /*valores.put(BdTableComprasEfetuadas.CAMPO_LISTA_PRODUTOS, lista_produtos);*/
 
 
         return valores;
@@ -70,9 +70,9 @@ public class ComprasEfetuadas {
                 cursor.getColumnIndex(BdTableComprasEfetuadas.QUANTIDADE)
         );
 
-        String lista_produtos = cursor.getString(
+        /*String lista_produtos = cursor.getString(
                 cursor.getColumnIndex(BdTableComprasEfetuadas._ID)
-        );
+        );*/
 
 
         ComprasEfetuadas ComprasEfetuadas = new ComprasEfetuadas();
@@ -80,7 +80,7 @@ public class ComprasEfetuadas {
         ComprasEfetuadas.setId(id);
         /*ComprasEfetuadas.setNome_produto(nome_produto);*/
         ComprasEfetuadas.setQuantidade(quantidade);
-        ComprasEfetuadas.setLista_produtos(lista_produtos);
+        /*ComprasEfetuadas.setLista_produtos(lista_produtos);*/
 
 
         return ComprasEfetuadas;

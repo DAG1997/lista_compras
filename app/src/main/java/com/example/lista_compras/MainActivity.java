@@ -4,13 +4,7 @@ import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +12,25 @@ import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {    private static final int ID_CURSOR_LOADER_LISTA_COMPRAS = 0;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+    private static final int ID_CURSOR_LOADER_LISTA_COMPRAS = 0;
+    public static final String ID_LISTAPRODUTOS = "ID_LISTAPRODUTOS";
+
+    private Adaptador_Lista_Compras adaptadorListaProdutos;
+    private RecyclerView recyclerViewListaProdutos;
+    private RecyclerView recyclerViewComprasEfetuadas;
+    private Adaptador_Compras_Efetuadas adaptador_compras_efetuadas;
+    private RecyclerView recyclerViewDinheiroGasto;
+    private Adaptador_DinheiroGasto adaptador_dinheiro_gasto;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +38,24 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         setContentView(R.layout.activity_main);
         Button btn = (Button) findViewById(R.id.button);
         getSupportLoaderManager().initLoader(ID_CURSOR_LOADER_LISTA_COMPRAS, null, this);
+
+
+        recyclerViewListaProdutos = (RecyclerView) findViewById(R.id.recyclerViewListaProdutos);
+        adaptadorListaProdutos = new Adaptador_Lista_Compras(this);
+        recyclerViewListaProdutos.setAdapter(adaptadorListaProdutos);
+        recyclerViewListaProdutos.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewComprasEfetuadas = (RecyclerView) findViewById(R.id.recyclerViewComprasEfetuadas);
+        adaptador_compras_efetuadas = new Adaptador_Compras_Efetuadas(this);
+        recyclerViewComprasEfetuadas.setAdapter(adaptador_compras_efetuadas);
+        recyclerViewComprasEfetuadas.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewDinheiroGasto = (RecyclerView) findViewById(R.id.recyclerViewDinheiroGasto);
+        adaptador_dinheiro_gasto = new Adaptador_DinheiroGasto(this) ;
+        recyclerViewDinheiroGasto.setAdapter(adaptador_dinheiro_gasto);
+        recyclerViewDinheiroGasto.setLayoutManager(new LinearLayoutManager(this));
+
+
+
+
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,12 +86,41 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         });
 
 
+
+
+
+
+
+
     }
+    @Override
+    protected void onResume() {
+        getSupportLoaderManager().restartLoader(ID_CURSOR_LOADER_LISTA_COMPRAS, null, this);
+
+        super.onResume();
+    }
+
+    public Menu menu;
+
+    public void atualizaOpcoesMenu() {
+        ListaProdutos listaProdutos = adaptadorListaProdutos.getListaProdutosSelecionada();
+        ComprasEfetuadas comprasEfetuadas = adaptador_compras_efetuadas.getComprasEfetuadasSelecionadas();
+        DinheiroGasto dinheiroGasto = adaptador_dinheiro_gasto.getDinheiroGastoSelecionado();
+
+        /*boolean mostraAlterarEliminar = (livro != null);
+
+        menu.findItem(R.id.action_alterar).setVisible(mostraAlterarEliminar);
+        menu.findItem(R.id.action_eliminar).setVisible(mostraAlterarEliminar);*/
+    }
+
+
 
         @Override
         public boolean onCreateOptionsMenu (Menu menu){
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+            this.menu = menu;
         return true;
     }
 
@@ -75,6 +134,27 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        /*} else if (id == R.id.action_inserir) {
+            Intent intent = new Intent(this, InserirLivroActivity.class);
+            startActivity(intent);
+
+            return true;
+        } else if (id == R.id.action_alterar) {
+            Intent intent = new Intent(this, AlterarLivroActivity.class);
+            intent.putExtra(ID_LIVRO, adaptadorLivros.getLivroSelecionado().getId());
+
+            startActivity(intent);
+
+            return true;
+        } else if (id == R.id.action_eliminar) {
+            Intent intent = new Intent(this, EliminarLivroActivity.class);
+            intent.putExtra(ID_LIVRO, adaptadorLivros.getLivroSelecionado().getId());
+
+            startActivity(intent);
+
+            return true;
+        }*/
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -109,13 +189,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
-        Loader<Cursor> cursorLoader = new CursorLoader(
-                this, Lista_Compras_ContentProvider.ENDERECO_COMPRASEFETUADAS, BdTableComprasEfetuadas
-                Uri.parse(
-                        "content://com.example.lista_compras/compras_efetuadas"), BdTableComprasEfetuadas.TODAS_COLUNAS, null, null, BdTableComprasEfetuadas.QUANTIDADE
-
+        androidx.loader.content.CursorLoader cursorLoader = new androidx.loader.content.CursorLoader(this, Compras_Efetuadas_ContentProvider.ENDERECO_COMPRASEFETUADAS, BdTableComprasEfetuadas.TODAS_COLUNAS, null, null, BdTableComprasEfetuadas.QUANTIDADE
         );
-
 
         return cursorLoader;
     }
@@ -162,7 +237,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
      */
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-
+        adaptadorListaProdutos.setCursor(data);
+        adaptador_compras_efetuadas.setCursor(data);
+        adaptador_dinheiro_gasto.setCursor(data);
 
     }
 
@@ -177,6 +254,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
      */
     @Override
     public void onLoaderReset(@NonNull Loader<Cursor> loader){
-
+        adaptadorListaProdutos.setCursor(null);
+        adaptador_compras_efetuadas.setCursor(null);
+        adaptador_dinheiro_gasto.setCursor(null);
     }
 }

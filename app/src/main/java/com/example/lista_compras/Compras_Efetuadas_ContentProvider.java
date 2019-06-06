@@ -10,13 +10,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import static com.example.lista_compras.BdTableComprasEfetuadas.*;
 
-public class Lista_Compras_ContentProvider extends ContentProvider {
+public class Compras_Efetuadas_ContentProvider extends ContentProvider {
     public static final String AUTHORITY = "pt.ipg.livros";
     public static final String COMPRASEFETUADAS = "compras";
     public static final String DINHEIROGASTO = "dinheiro";
@@ -306,13 +306,13 @@ public class Lista_Compras_ContentProvider extends ContentProvider {
 
         switch (getUriMatcher().match(uri)){
             case URI_COMPRASEFETUADAS_ESPECIFICAS:
-                return new BdTableComprasEfetuadas(bd).update( BdTableComprasEfetuadas._ID = "=?", new String[]{id});
+                return new BdTableComprasEfetuadas(bd).delete( BdTableComprasEfetuadas._ID + "=?", new String[]{id});
 
             case URI_DINHEIROGASTO_ESPECIFICO:
-                return new BdTableDinheiroGasto(bd).update( BdTableDinheiroGasto._ID = "=?", new String[]{id});
+                return new BdTableDinheiroGasto(bd).delete( BdTableDinheiroGasto._ID + "=?", new String[]{id});
 
             case URI_LISTAPRODUTOS_ESPECIFICAS:
-                return new BdTableListaProdutos(bd).update( BdTableListaProdutos._ID = "=?", new String[]{id});
+                return new BdTableListaProdutos(bd).delete( BdTableListaProdutos._ID + "=?", new String[]{id});
 
             default:
                 throw new UnsupportedOperationException("URI inválida(UPDATE):" + uri.toString());
@@ -324,7 +324,7 @@ public class Lista_Compras_ContentProvider extends ContentProvider {
     }
 
 
-    }
+
 
 
 
@@ -355,13 +355,13 @@ public class Lista_Compras_ContentProvider extends ContentProvider {
 
         switch (getUriMatcher().match(uri)){
             case URI_COMPRASEFETUADAS_ESPECIFICAS:
-                return new BdTableComprasEfetuadas(bd).update( BdTableComprasEfetuadas._ID = "=?", new String[]{id});
+                return new BdTableComprasEfetuadas(bd).update( values,BdTableComprasEfetuadas._ID + "=?", new String[]{id});
 
             case URI_DINHEIROGASTO_ESPECIFICO:
-                return new BdTableDinheiroGasto(bd).update( BdTableDinheiroGasto._ID = "=?", new String[]{id});
+                return new BdTableDinheiroGasto(bd).update( values,BdTableDinheiroGasto._ID + "=?", new String[]{id});
 
             case URI_LISTAPRODUTOS_ESPECIFICAS:
-                return new BdTableListaProdutos(bd).update( BdTableListaProdutos._ID = "=?", new String[]{id});
+                return new BdTableListaProdutos(bd).update( values,BdTableListaProdutos._ID + "=?", new String[]{id});
 
                 default:
                 throw new UnsupportedOperationException("URI inválida(UPDATE):" + uri.toString());
